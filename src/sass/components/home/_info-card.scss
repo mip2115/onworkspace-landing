@@ -1,0 +1,67 @@
+.info {
+  padding: 0px $primary-padding;
+  display: flex;
+  flex-direction: column;
+}
+.info-card {
+  display: flex;
+
+  flex-direction: column;
+  padding: 60px 20px;
+
+  &:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  & h3 {
+    font-weight: 400;
+    font-size: 40px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.info-card {
+  color: $primary-color;
+  &:nth-child(even) {
+    direction: rtl;
+
+    & p {
+      direction: ltr;
+    }
+  }
+
+  &-desc {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    & p {
+      font-size: 20px;
+      width: 400px;
+    }
+  }
+  &-text {
+    //line-height: 25px;
+    height: 300px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & p {
+      font-size: 25px;
+    }
+  }
+
+  &-img {
+    //@include: 500px;
+    height: 300px;
+    flex: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

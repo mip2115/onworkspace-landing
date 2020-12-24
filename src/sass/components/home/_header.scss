@@ -1,0 +1,25 @@
+.header {
+  padding: 30px $primary-padding;
+  width: 650px;
+  height: 100%;
+  color: $primary-color;
+  background-color: $light-background-transparent;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & h3 {
+    font-size: 65px;
+    font-weight: 100;
+
+    &:nth-child(2) {
+      font-weight: 700;
+    }
+  }
+
+  & p {
+    margin-top: 50px;
+    font-size: 30px;
+  }
+}

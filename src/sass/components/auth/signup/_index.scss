@@ -1,0 +1,15 @@
+@import "./signup-form.scss";
+.signup {
+  height: calc(100vh - #{$navbar-height});
+  background-image: url("https://lh3.googleusercontent.com/proxy/BSNhQal97BPmZFNkOqMh0t8y4RJq9wq6x7TuTAFDxz8M0KTUJwzatoW5NAGYdq-lWfAhyXV4wpVCrC4LKFLC6PRimpFWOPBFHqtC5DIfrk3lD1MzdDe3jTSgs7w1QSc");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// https://lh3.googleusercontent.com/proxy/BSNhQal97BPmZFNkOqMh0t8y4RJq9wq6x7TuTAFDxz8M0KTUJwzatoW5NAGYdq-lWfAhyXV4wpVCrC4LKFLC6PRimpFWOPBFHqtC5DIfrk3lD1MzdDe3jTSgs7w1QSc
+// https://www.incimages.com/uploaded_files/image/1920x1080/getty_508858458_299861.jpg
