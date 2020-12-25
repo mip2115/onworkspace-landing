@@ -12,9 +12,9 @@ const InfoCard = (props) => {
   const { title, text, imgSrc } = props;
   return (
     <div className="info-card">
-      <h3>{title}</h3>
       <div className="info-card-desc">
         <div className="info-card-text">
+          <h3>{title}</h3>
           <p>{text}</p>
         </div>
         <div
@@ -77,6 +77,12 @@ const Info = () => {
       <InfoCard
         imgSrc={img3Src}
         title="Safe and secure"
+        text="Every space and user is vetted to ensure strict quality standards, including cleaning protocols and distancing measures to protect our community."
+      />
+      {/* </Fade> */}
+      <InfoCard
+        imgSrc={img3Src}
+        title="Build community"
         text="Every space and user is vetted to ensure strict quality standards, including cleaning protocols and distancing measures to protect our community."
       />
       {/* </Fade> */}
