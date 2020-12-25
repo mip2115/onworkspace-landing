@@ -59,6 +59,19 @@
   color: $secondary-color;
   cursor: pointer;
   transition: 0.2s ease;
+  font-size: 18px;
+}
+
+.apply-host-btn {
+  background-color: $primary-color;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+
+  &:hover {
+    box-shadow: 1px 1px 3px #838383;
+  }
 }
 
 // const Navbar = (props) => {

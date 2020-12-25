@@ -1,0 +1,21 @@
+@import "./host-signup.scss";
+.host-signup {
+  position: relative;
+
+  display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  animation-name: fadeInAnimation;
+  animation-duration: 1s;
+  padding: 0 $primary-padding $primary-padding $primary-padding;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

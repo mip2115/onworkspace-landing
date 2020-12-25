@@ -7,10 +7,8 @@ import { MainContainer } from "./components/utils";
 import Signup from "./components/auth/signup";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-
+import HostSignup from "./components/auth/host-signup";
 function App(props) {
-  console.log("PROPS");
-  console.log(props);
   return (
     <div className="App">
       <Navbar />
@@ -18,7 +16,8 @@ function App(props) {
       <MainContainer>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/sign-up" component={Signup} />
+          {/* <Route exact path="/sign-up" component={Signup} />
+          <Route exact path="/host-sign-up" component={HostSignup} /> */}
         </Switch>
       </MainContainer>
     </div>

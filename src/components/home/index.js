@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import Info from "./info";
 import Header from "./header";
 import { Fade } from "react-reveal";
-const Home = () => {
+import Signup from "../auth/signup";
+import HostSignup from "../auth/host-signup";
+import { connect } from "react-redux";
+const Home = (props) => {
+  const [hostSignup, setHostSignup] = useState(true);
+  const { displayHostSignup } = props;
   //   const [index, setIndex] = useState(0);
   //   const [ctrBackground, setCtrBackground] = useState("home home-background-1");
 
@@ -21,8 +26,15 @@ const Home = () => {
         <Header />
       </div>
       <Info />
+      <Signup />
     </div>
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    displayHostSignup: state.nav.displayHostSignup,
+  };
+};
+
+export default connect(mapStateToProps)(Home);
