@@ -43,11 +43,22 @@
 }
 
 .navbar-tab {
+  transition: 1s ease;
+  &:hover {
+    //text-shadow: 1px 1px 1px #5c5c5c;
+    p {
+      //font-size: 700;
+      //text-decoration: underline;
+      text-shadow: 0.5px 0.5px 1px #a3a3a3;
+    }
+  }
   text-align: center;
   &:not(:last-child) {
     margin-right: 20px;
   }
   color: $secondary-color;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 // const Navbar = (props) => {

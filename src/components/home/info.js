@@ -50,7 +50,7 @@ const Info = () => {
   // https://www.selbekk.io/blog/2019/08/how-to-fade-in-content-as-it-scrolls-into-view/
 
   return (
-    <div className="info">
+    <div id="info" className="info">
       {/* <Fade> */}
       <InfoCard
         imgSrc={img1Src}

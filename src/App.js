@@ -5,16 +5,24 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import { MainContainer } from "./components/utils";
 import Signup from "./components/auth/signup";
-function App() {
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
+function App(props) {
+  console.log("PROPS");
+  console.log(props);
   return (
     <div className="App">
       <Navbar />
+
       <MainContainer>
-        {/* <Home /> */}
-        <Signup />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/sign-up" component={Signup} />
+        </Switch>
       </MainContainer>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);

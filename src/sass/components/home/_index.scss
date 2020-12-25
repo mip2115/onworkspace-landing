@@ -1,6 +1,9 @@
 @import "./info-card.scss";
 @import "./header.scss";
 .home {
+  animation-name: fadeInAnimation;
+  animation-duration: 1s;
+
   &-background {
     height: calc(100vh - #{$navbar-height} - 150px);
     animation-name: background-animation;
@@ -9,6 +12,16 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 

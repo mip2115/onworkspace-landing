@@ -9,6 +9,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation-name: fadeInAnimation;
+  animation-duration: 1s;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 // https://lh3.googleusercontent.com/proxy/BSNhQal97BPmZFNkOqMh0t8y4RJq9wq6x7TuTAFDxz8M0KTUJwzatoW5NAGYdq-lWfAhyXV4wpVCrC4LKFLC6PRimpFWOPBFHqtC5DIfrk3lD1MzdDe3jTSgs7w1QSc

@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 
 const Navbar = (props) => {
   let listener = null;
   const [scrollState, setScrollState] = useState("top");
+
+  const handleClick = (e) => {
+    const { history } = props;
+
+    if (e.target.id == "signUp") {
+      if (window.location.pathname !== "/sign-up") {
+        history.push("/sign-up");
+      }
+    } else if (e.target.id == "about") {
+      const elem = document.getElementById("info");
+      const info = elem.getBoundingClientRect();
+      window.scrollTo(info.left, info.top - 100);
+    }
+  };
+
   useEffect(() => {
     listener = document.addEventListener("scroll", (e) => {
       var scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 120) {
         setScrollState("scroll-navbar");
-        // if (scrollState !== "amir") {
-        //   setScrollState("scrollNavbar");
-        // }
       } else {
         setScrollState("top-navbar");
-        // if (scrollState !== "top") {
-        //   setScrollState("top");
-        // }
       }
     });
     return () => {
@@ -24,20 +34,36 @@ const Navbar = (props) => {
   }, [scrollState]);
   return (
     <div className={`navbar ${scrollState}`}>
-      <div className="navbar-logo">LOGO</div>
+      <div className="navbar-logo"></div>
       <div className="navbar-tabs">
-        <div className="navbar-tab">
-          <p>About</p>
+        <div onClick={handleClick} className="navbar-tab">
+          <p id="about" name="about">
+            About
+          </p>
         </div>
         <div className="navbar-tab">
-          <p>Contact</p>
+          <p>
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="mailto:mip2115@columbia"
+            >
+              Contact
+            </a>
+          </p>
         </div>
-        <div className="navbar-tab">
-          <p>Sign Up</p>
+        <div
+          id="signUp"
+          name="signUp"
+          onClick={handleClick}
+          className="navbar-tab"
+        >
+          <p id="signUp" name="signUp">
+            Sign Up
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

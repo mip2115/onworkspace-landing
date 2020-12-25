@@ -1,5 +1,6 @@
 .info {
-  padding: 0px $primary-padding;
+  padding: 0px $primary-padding $primary-padding $primary-padding;
+
   display: flex;
   flex-direction: column;
 }
@@ -26,6 +27,8 @@
   color: $primary-color;
   &:nth-child(even) {
     direction: rtl;
+    // background-color: rgb(243, 243, 243);
+    //box-shadow: 1px 1px 10px rgb(182, 182, 182);
 
     & p {
       direction: ltr;
@@ -63,5 +66,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 4px;
   }
 }
