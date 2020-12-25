@@ -1,21 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import {
+  setSignupFormAction,
+  setHostSignupFormAction,
+} from "../../redux/actions/navbar-actions";
 
+import { disableAllInputFieldsErrorsAction } from "../../redux/actions/signup-form-actions";
 const Navbar = (props) => {
   let listener = null;
   const [scrollState, setScrollState] = useState("top");
 
-  const handleClick = (e) => {
-    const { history } = props;
+  const handleClick = async (e) => {
+    const {
+      history,
+      setSignupForm,
+      setHostSignupForm,
+      disableAllInputFieldsErrors,
+    } = props;
 
     if (e.target.id == "signUp") {
-      if (window.location.pathname !== "/sign-up") {
-        history.push("/sign-up");
-      }
+      disableAllInputFieldsErrors();
+      await setSignupForm();
+      const elem = document.getElementById("signup");
+      const info = elem.getBoundingClientRect();
+
+      const bodyRect = document.body.getBoundingClientRect();
+      const offset = info.top - bodyRect.top;
+      var scrolled = document.scrollingElement.scrollTop;
+
+      window.scrollTo(info.left, offset - 150);
     } else if (e.target.id == "about") {
       const elem = document.getElementById("info");
       const info = elem.getBoundingClientRect();
-      window.scrollTo(info.left, info.top - 100);
+
+      const bodyRect = document.body.getBoundingClientRect();
+      const offset = info.top - bodyRect.top;
+      var scrolled = document.scrollingElement.scrollTop;
+
+      window.scrollTo(info.left, offset - 100);
+    } else if (e.target.id == "applyToBeHost") {
+      disableAllInputFieldsErrors();
+      await setHostSignupForm();
+      const elem = document.getElementById("signup");
+      const info = elem.getBoundingClientRect();
+      const bodyRect = document.body.getBoundingClientRect();
+      const offset = info.top - bodyRect.top;
+      var scrolled = document.scrollingElement.scrollTop;
+      window.scrollTo(info.left, offset - 150);
     }
   };
 
@@ -36,6 +69,11 @@ const Navbar = (props) => {
     <div className={`navbar ${scrollState}`}>
       <div className="navbar-logo"></div>
       <div className="navbar-tabs">
+        <div onClick={handleClick} className="navbar-tab apply-host-btn">
+          <p id="applyToBeHost" name="applyToBeHost">
+            Apply to be a host
+          </p>
+        </div>
         <div onClick={handleClick} className="navbar-tab">
           <p id="about" name="about">
             About
@@ -65,5 +103,20 @@ const Navbar = (props) => {
     </div>
   );
 };
-
-export default withRouter(Navbar);
+const mapStateToProps = (state) => {
+  return {
+    displayHostSignup: state.nav.displayHostSignup,
+  };
+};
+const dispatchStateToProps = (dispatch) => {
+  return {
+    setSignupForm: () => dispatch(setSignupFormAction()),
+    setHostSignupForm: () => dispatch(setHostSignupFormAction()),
+    disableAllInputFieldsErrors: () =>
+      dispatch(disableAllInputFieldsErrorsAction()),
+  };
+};
+export default compose(
+  withRouter,
+  connect(mapStateToProps, dispatchStateToProps)
+)(Navbar);

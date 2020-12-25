@@ -1,0 +1,106 @@
+.host-sign-up-form {
+  display: flex;
+  flex-direction: column;
+  //   justify-content: center;
+  align-items: flex-start;
+  color: $primary-color;
+  padding: 40px 60px;
+  animation-name: fadeInAnimation;
+  animation-duration: 1s;
+  width: 100%;
+  border: 1px solid $primary-color;
+  border-radius: 20px;
+
+  & h3 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+}
+
+.host-signup-form-p2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.host-signup-form-p1 {
+  flex: 1;
+}
+.host-sign-up {
+  &-ctr {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.input-checkbox-fields {
+  margin-top: 20px;
+
+  width: 400px;
+
+  //  font-weight: 700;
+  & label {
+    font-size: 18px;
+  }
+
+  &-boxes {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.checkbox-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &-box {
+    margin-right: 4px;
+    cursor: pointer;
+    border: solid 2px;
+    width: 22px;
+    height: 22px;
+    transition: 0.2s ease;
+    border-radius: 2px;
+  }
+
+  &:not(:last-child) {
+    margin-right: 28px;
+  }
+}
+
+.checkbox-clicked {
+  background-color: $primary-color;
+}
+
+.textarea-input {
+  & textarea {
+    border-radius: 4px;
+    padding: 10px 10px;
+    font-size: 18px;
+    resize: none;
+    width: 100%;
+
+    &:focus,
+    &:active {
+      outline: none;
+      border: solid $tertiary-color 1px;
+    }
+  }
+}
+
+.multi-image-upload {
+  margin-top: 50px;
+  border: solid $primary-color 1px;
+  border-radius: 4px;
+  //   background-color: rgb(245, 245, 245);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 200px;
+  width: 100%;
+}
