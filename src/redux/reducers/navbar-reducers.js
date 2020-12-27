@@ -1,22 +1,19 @@
 import { combineReducers } from "redux";
 
 const initialState = {
-  displayHostSignup: true,
+  displayUserSignup: true,
   isLoading: false,
 };
-const setSignupReducer = (state = false, action) => {
+
+const setSignupReducer = (state = true, action) => {
   switch (action.type) {
     case "SET_SIGNUP_FORM_ACTION":
-      return false;
-    case "SET_HOST_SIGNUP_FORM_ACTION":
-      return true;
+      return action.payload;
     default:
       return state;
   }
 };
 
 export default combineReducers({
-  displayHostSignup: setSignupReducer,
+  displayUserSignup: setSignupReducer,
 });
-
-// return (dispatch, getState) => {

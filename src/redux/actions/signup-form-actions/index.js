@@ -38,25 +38,25 @@ export const submitSignupFormAction = (form) => {
     //   formErrors.MOBILE_ERROR = "You must provide a phone number";
     // }
 
-    // if (!form.images && getState().nav.displayHostSignup) {
+    // if (!form.images && !getState().nav.displayUserSignup) {
     //   formErrors.IMAGES_ERROR =
     //     "You must provide at least 3 images of your work space";
     // }
 
-    // if (!form.blurb && getState().nav.displayHostSignup) {
+    // if (!form.blurb && !getState().nav.displayUserSignup) {
     //   formErrors.BLURB_ERROR = "You must provide a blurb";
     // }
 
-    // if (!form.schedule && getState().nav.displayHostSignup) {
+    // if (!form.schedule && !getState().nav.displayUserSignup) {
     //   formErrors.SCHEDULE_ERROR = "You must select an option";
     // }
 
-    // if (!form.amenities && getState().nav.displayHostSignup) {
+    // if (!form.amenities && !getState().nav.displayUserSignup) {
     //   formErrors.AMENITIES_ERROR = "You must select an option";
     // }
 
     // // maybe do this as well for customer to know where they all are.
-    // if (!form.location && getState().nav.displayHostSignup) {
+    // if (!form.location && !getState().nav.displayUserSignup) {
     //   formErrors.LOCATION_ERROR =
     //     "You must select a location for your work space";
     // }
@@ -78,7 +78,7 @@ export const submitSignupFormAction = (form) => {
         payload: true,
       });
 
-      const role = getState().nav.displayHostSignup ? "host" : "guest";
+      const role = !getState().nav.displayUserSignup ? "host" : "guest";
       const tenancy = "testing"; // check env here
       const data = {
         role,
@@ -113,6 +113,7 @@ export const submitSignupFormAction = (form) => {
     // call succeeded
     dispatch({
       type: "FORM_SUBMIT_SUCCESS",
+      payload: true,
     });
   };
 };

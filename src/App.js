@@ -16,8 +16,6 @@ function App(props) {
       <MainContainer>
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route exact path="/sign-up" component={Signup} />
-          <Route exact path="/host-sign-up" component={HostSignup} /> */}
         </Switch>
       </MainContainer>
     </div>

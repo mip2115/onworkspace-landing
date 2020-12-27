@@ -1,15 +1,8 @@
-export const setSignupFormAction = () => {
-  return {
-    type: "SET_SIGNUP_FORM_ACTION",
-    payload: false,
+export const setSignupFormAction = (bool) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "SET_SIGNUP_FORM_ACTION",
+      payload: bool,
+    });
   };
 };
-
-
-export const setHostSignupFormAction = () => {
-  return {
-    type: "SET_HOST_SIGNUP_FORM_ACTION",
-    payload: true,
-  };
-};
-

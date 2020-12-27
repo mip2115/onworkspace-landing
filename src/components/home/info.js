@@ -49,26 +49,6 @@ const InfoCard = (props) => {
 };
 
 const Info = () => {
-  // React.useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     if (entries[0].isIntersecting) {
-  //       // Not possible to set it back to false like this:
-  //       setVisible(true);
-  //       // No need to keep observing:
-  //       console.log("ELEM IS: ");
-  //       console.log(domRef.current);
-  //       //observer.unobserve(domRef.current);
-  //     }
-  //   });
-
-  // just use this
-  // https://www.npmjs.com/package/react-reveal
-
-  // observer.observe(domRef.current);
-
-  //   return () => observer.unobserve(domRef.current);
-  // }, []);
-
   // https://www.selbekk.io/blog/2019/08/how-to-fade-in-content-as-it-scrolls-into-view/
 
   return (

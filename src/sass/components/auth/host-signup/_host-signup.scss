@@ -1,20 +1,21 @@
 .host-sign-up-form {
   display: flex;
   flex-direction: column;
-  //   justify-content: center;
   align-items: flex-start;
   color: $primary-color;
-  //padding: 40px 60px;
   animation-name: fadeInAnimation;
   animation-duration: 1s;
   width: 100%;
-  //border: 1px solid $primary-color;
   border-radius: 20px;
-
   & h3 {
     font-size: 30px;
     font-weight: 400;
     margin-bottom: 30px;
+
+    @include for-tablet-portrait-up {
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -25,9 +26,6 @@
   justify-content: flex-start;
 }
 .host-signup-form-p1 {
-  //   .input-checkbox-fields:last-child {
-  //     margin-top: 30px;
-  //   }
   flex: 1;
 }
 .host-sign-up {
@@ -35,23 +33,35 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    @include for-tablet-portrait-up {
+      flex-direction: column;
+    }
   }
 }
 
 .input-checkbox-fields {
   margin-top: 20px;
   width: 400px;
-  //   height: 60px;
 
-  //  font-weight: 700;
+  @include for-tablet-portrait-up {
+    margin-top: 0;
+    width: 100%;
+  }
+
   & label {
     font-size: 18px;
+    @include for-tablet-portrait-up {
+      font-size: 16px;
+    }
   }
 
   &-boxes {
     margin-top: 5px;
     display: flex;
     flex-direction: row;
+    @include for-tablet-portrait-up {
+      flex-wrap: wrap;
+    }
   }
 }
 
@@ -59,6 +69,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  @include for-tablet-portrait-up {
+    width: 115px;
+    padding: 5px 0;
+  }
 
   &-box {
     margin-right: 4px;
@@ -68,6 +82,11 @@
     height: 22px;
     transition: 0.2s ease;
     border-radius: 2px;
+
+    @include for-tablet-portrait-up {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &:not(:last-child) {
@@ -87,6 +106,10 @@
     resize: none;
     width: 100%;
 
+    @include for-tablet-portrait-up {
+      font-size: 16px;
+    }
+
     &:focus,
     &:active {
       outline: none;
@@ -103,7 +126,6 @@
   animation-name: fadeInAnimation;
   animation-duration: 1s;
 
-  // float: left;
   &:not(:last-child) {
     margin-right: 15px;
   }
@@ -149,7 +171,6 @@
   &-spinner {
     height: 25px;
     width: 25px;
-    //order: solid $primary-color 1px;
     border-radius: 2px;
     animation: spin 4s linear infinite;
     background-color: $primary-color;
@@ -180,17 +201,21 @@
   margin-top: 10px;
   border: dashed $primary-color 1px;
   border-radius: 4px;
-  padding: 20px;
-  //   background-color: rgb(245, 245, 245);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  // height: 200px;
   height: 230px;
-
   width: 100%;
   overflow-y: scroll;
+  @include for-tablet-portrait-up {
+    & + p {
+      border: solid;
+      display: none;
+      height: 0;
+    }
+    display: none;
+    height: 0;
+  }
 }
 
 .multi-image-upload.images-loaded {

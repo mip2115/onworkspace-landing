@@ -17,7 +17,7 @@ const Signup = (props) => {
     submitSignupForm,
     totalState,
     disableErrorInputField,
-    displayHostSignup,
+    displayUserSignup,
     handleSignupFormInput,
     uploadedImages,
     signupFormInput,
@@ -38,7 +38,7 @@ const Signup = (props) => {
   return (
     <div id="signup" className="signup">
       <div className="signup-ctr">
-        {!displayHostSignup ? (
+        {displayUserSignup ? (
           <SignupForm
             handleSignupFormInput={handleSignupFormInput}
             submitSignupForm={submitSignupForm}
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
   return {
     validationErrors: state.signupForm.formValidationErrors,
     uploadedImages: state.signupForm.signupFormInput,
-    displayHostSignup: state.nav.displayHostSignup,
+    displayUserSignup: state.nav.displayUserSignup,
     signupFormInput: state.signupForm.signupFormInput,
     isLoading: state.utils.isLoading,
     formSuccess: state.signupForm.signupFormSubmitSuccess,

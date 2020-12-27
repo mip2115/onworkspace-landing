@@ -9,6 +9,9 @@ html {
   flex-direction: column;
   margin: 0 auto;
   max-width: 1500px;
+
+  @include for-tablet-portrait-up {
+  }
 }
 #root {
   min-height: 100%;

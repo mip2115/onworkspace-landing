@@ -4,14 +4,26 @@
   height: 100%;
   color: $primary-color;
   background-color: $light-background-transparent;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
 
+  @include for-tablet-portrait-up {
+    width: 100%;
+    background-color: white;
+    padding: 10px $primary-padding-mobile;
+
+    height: auto;
+  }
+
   & h3 {
     font-size: 65px;
     font-weight: 100;
+
+    @include for-tablet-portrait-up {
+      font-size: 50px;
+      font-weight: 100;
+    }
 
     &:nth-child(2) {
       font-weight: 700;
@@ -21,5 +33,9 @@
   & p {
     margin-top: 50px;
     font-size: 25px;
+
+    @include for-tablet-portrait-up {
+      margin-top: 30px;
+    }
   }
 }
