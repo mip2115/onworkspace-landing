@@ -114,6 +114,24 @@ const InputCheckboxFields = (props) => {
     </div>
   );
 };
+
+const SmallImageCard = (props) => {
+  const { img, idx, removeSmallImageCard } = props;
+  const removeImage = (e) => {
+    removeSmallImageCard(idx);
+  };
+
+  console.log("image: ", img);
+  return (
+    <div
+      style={{ backgroundImage: `url(${img})` }}
+      className="small-card-image"
+    >
+      <div onClick={removeImage}>&#x2715;</div>
+    </div>
+  );
+};
+
 // disable error when uploading images again
 const MultiImageUpload = (props) => {
   const {
@@ -122,18 +140,39 @@ const MultiImageUpload = (props) => {
     disableErrorInputField,
     errMsg,
     handleSignupFormInput,
+    signupFormInput,
+    removeSmallImageCard,
   } = props;
 
+  const { images } = signupFormInput;
   useEffect(() => {
-    const multiDropElem = document.getElementById("multi-image-upload");
-    console.log("width:");
-    console.log(multiDropElem.width);
-    multiDropElem.style.height = multiDropElem.width;
-  });
+    const multiImageUpload = document.getElementById("multi-image-upload");
+
+    if (images.length > 0) {
+      multiImageUpload.classList.add("images-loaded");
+    } else {
+      if (multiImageUpload.classList.contains("images-loaded")) {
+        multiImageUpload.classList.remove("images-loaded");
+      }
+    }
+  }, [images]);
+  console.log("NUM IMAGES: ");
+  console.log(images.length);
   return (
     <div>
       <div id="multi-image-upload" className="multi-image-upload">
-        Drag and drop files here
+        {images.length == 0 && <p>Drag and drop files here</p>}
+        {images.length > 0 &&
+          images.map((e, i) => {
+            return (
+              <SmallImageCard
+                removeSmallImageCard={removeSmallImageCard}
+                idx={i}
+                img={e}
+                key={i}
+              />
+            );
+          })}
         {/* <input
           className="box__file"
           type="file"
@@ -218,6 +257,8 @@ const HostSignupFormP2 = (props) => {
     handleSignupFormInput,
     validationErrors,
     disableErrorInputField,
+    signupFormInput,
+    removeSmallImageCard,
   } = props;
   return (
     <div className="host-signup-form-p2">
@@ -229,6 +270,8 @@ const HostSignupFormP2 = (props) => {
         placeholder="Write a small blurb about your work space..."
       />
       <MultiImageUpload
+        removeSmallImageCard={removeSmallImageCard}
+        signupFormInput={signupFormInput}
         validationErrors={validationErrors}
         disableErrorInputField={disableErrorInputField}
         fieldId="images"
@@ -332,7 +375,12 @@ const HostSignupForm = (props) => {
     });
   }, []);
 
-  const { validationErrors, submitSignupForm, disableErrorInputField } = props;
+  const {
+    validationErrors,
+    submitSignupForm,
+    disableErrorInputField,
+    isLoading,
+  } = props;
   return (
     <div className="host-sign-up-form">
       {/* <h3>Apply to be a host</h3> */}
@@ -341,9 +389,16 @@ const HostSignupForm = (props) => {
 
         <HostSignupFormP2 {...props} />
       </div>
-      <div onClick={submitSignupForm} className="signup-form-btn">
-        <div>Submit</div>
-      </div>
+
+      {/* <div onClick={submitSignupForm} className="signup-form-btn">
+        {!isLoading ? (
+          <div className="signup-form-btn-submit">Submit</div>
+        ) : (
+          <div className="loading-btn">
+            <div id="loading-btn-spinner" className="loading-btn-spinner"></div>
+          </div>
+        )}
+      </div> */}
     </div>
   );
 };

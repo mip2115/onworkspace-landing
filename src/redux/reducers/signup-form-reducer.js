@@ -27,6 +27,13 @@ export const handleSignupFormInputReducer = (
   action
 ) => {
   switch (action.type) {
+    case "REMOVE_SMALL_IMAGE_CARD_ACTION":
+      const idx = action.payload;
+      const images = state.images.filter((img, i) => i !== idx);
+      return {
+        ...state,
+        images,
+      };
     case "HANDLE_SIGNUP_FORM_INPUT":
       const { field, value } = action.payload;
       if (field == "images") {
@@ -93,20 +100,18 @@ const formValidationErrorsReducer = (
   }
 };
 
-const setIsLoadingReducer = (state = true, action) => {
-  switch (action.type) {
-    case "IS_LOADING":
-      return true;
-    case "IS_LOADED":
-      return false;
-    default:
-      return state;
-  }
-};
+// const setIsLoadingReducer = (state = false, action) => {
+//   switch (action.type) {
+//     case "SET_IS_LOADING":
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// };
 
 export default combineReducers({
   formValidationErrors: formValidationErrorsReducer,
   signupFormSubmitSuccess: signupFormSubmitSuccessReducer,
-  isLoading: setIsLoadingReducer,
+  //   isLoading: setIsLoadingReducer,
   signupFormInput: handleSignupFormInputReducer,
 });

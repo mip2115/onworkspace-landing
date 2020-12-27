@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
   displayHostSignup: true,
+  isLoading: false,
 };
 const setSignupReducer = (state = false, action) => {
   switch (action.type) {

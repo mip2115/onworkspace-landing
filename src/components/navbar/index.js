@@ -18,6 +18,7 @@ const Navbar = (props) => {
       setSignupForm,
       setHostSignupForm,
       disableAllInputFieldsErrors,
+      setIsLoading,
     } = props;
 
     if (e.target.id == "signUp") {
@@ -67,7 +68,7 @@ const Navbar = (props) => {
   }, [scrollState]);
   return (
     <div className={`navbar ${scrollState}`}>
-      <div className="navbar-logo"></div>
+      <div className="navbar-loading"></div>
       <div className="navbar-tabs">
         <div onClick={handleClick} className="navbar-tab apply-host-btn">
           <p id="applyToBeHost" name="applyToBeHost">
@@ -110,6 +111,7 @@ const mapStateToProps = (state) => {
 };
 const dispatchStateToProps = (dispatch) => {
   return {
+    setIsLoading: (bool) => dispatch(setIsLoadingAction(bool)),
     setSignupForm: () => dispatch(setSignupFormAction()),
     setHostSignupForm: () => dispatch(setHostSignupFormAction()),
     disableAllInputFieldsErrors: () =>

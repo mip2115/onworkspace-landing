@@ -4,11 +4,11 @@
   //   justify-content: center;
   align-items: flex-start;
   color: $primary-color;
-  padding: 40px 60px;
+  //padding: 40px 60px;
   animation-name: fadeInAnimation;
   animation-duration: 1s;
   width: 100%;
-  border: 1px solid $primary-color;
+  //border: 1px solid $primary-color;
   border-radius: 20px;
 
   & h3 {
@@ -94,17 +94,118 @@
     }
   }
 }
+.small-card-image {
+  height: 80px;
+  width: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  animation-name: fadeInAnimation;
+  animation-duration: 1s;
+
+  // float: left;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  & div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    color: red;
+    padding: 2px;
+    border: solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
+
+.loading-btn {
+  margin-top: 30px;
+  border: solid $primary-color 1px;
+  width: 150px;
+  max-width: 150px;
+  min-width: 150px;
+  height: 55px;
+  max-height: 55px;
+  min-height: 55px;
+
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  animation-name: fadeInAnimation;
+  animation-duration: 1s;
+
+  &-spinner {
+    height: 25px;
+    width: 25px;
+    //order: solid $primary-color 1px;
+    border-radius: 2px;
+    animation: spin 4s linear infinite;
+    background-color: $primary-color;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 .multi-image-upload {
+  flex-wrap: wrap;
   margin-top: 10px;
-  border: solid $primary-color 1px;
+  border: dashed $primary-color 1px;
   border-radius: 4px;
+  padding: 20px;
   //   background-color: rgb(245, 245, 245);
   display: flex;
   justify-content: center;
   align-items: center;
 
   // height: 200px;
-  height: 220px;
+  height: 230px;
+
   width: 100%;
+  overflow-y: scroll;
+}
+
+.multi-image-upload.images-loaded {
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgb(235, 235, 235);
+  border: none;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

@@ -42,6 +42,16 @@
   align-items: center;
 }
 
+// .navbar-loading {
+//   border: solid;
+//   width: 200px;
+//   height: 60px;
+// }
+
+// .navbar-loading.is-loading {
+//   display: none;
+// }
+
 .navbar-tab {
   transition: 1s ease;
   &:hover {
@@ -73,22 +83,3 @@
     box-shadow: 1px 1px 3px #838383;
   }
 }
-
-// const Navbar = (props) => {
-//   return (
-//     <div className="navbar">
-//       <div className="navbar-logo">LOGO</div>
-//       <div className="navbar-tabs">
-//         <div className="navbar-tab">
-//           <p>About</p>
-//         </div>
-//         <div className="navbar-tab">
-//           <p>About</p>
-//         </div>
-//         <div className="navbar-tab">
-//           <p>Sign Up</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };

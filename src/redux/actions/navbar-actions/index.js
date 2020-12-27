@@ -5,10 +5,11 @@ export const setSignupFormAction = () => {
   };
 };
 
+
 export const setHostSignupFormAction = () => {
-  
   return {
     type: "SET_HOST_SIGNUP_FORM_ACTION",
     payload: true,
   };
 };
+

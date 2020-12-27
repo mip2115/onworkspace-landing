@@ -22,6 +22,25 @@
   display: none;
 }
 
+$test-background: rgb(235, 235, 235);
+// this is how you use 'add class'
 .multi-image-upload.is-dragover {
-  border: solid black 4px;
+  background-color: $test-background;
+  //animation-name: fadeInAnimation;
+  animation-duration: 1s;
+  border: none;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    //opacity: 0;
+    //background-color: white;
+    //border: solid;
+  }
+
+  100% {
+    border: solid 4px;
+    // background-color: $test-background;
+    background-color: red;
+  }
 }
