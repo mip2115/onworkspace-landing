@@ -46,10 +46,11 @@
 }
 
 .signup-form-btn {
-  margin-top: 50px;
+  margin-top: 40px;
   width: 100%;
   display: flex;
   flex-direction: row;
+  //padding: 40px 60px;
   justify-content: flex-start;
   & div {
     border: solid $primary-color 1px;

@@ -1,12 +1,20 @@
 @import "./signup-form.scss";
 .signup {
+  &-ctr {
+    // border: 1px solid $primary-color;
+    // border-radius: 20px;
+    // color: $primary-color;
+  }
   // background-image: url("https://lh3.googleusercontent.com/proxy/BSNhQal97BPmZFNkOqMh0t8y4RJq9wq6x7TuTAFDxz8M0KTUJwzatoW5NAGYdq-lWfAhyXV4wpVCrC4LKFLC6PRimpFWOPBFHqtC5DIfrk3lD1MzdDe3jTSgs7w1QSc");
   // background-size: cover;
   // background-repeat: no-repeat;
 
   position: relative;
-
+  // color: $primary-color;
   display: flex;
+  flex-direction: column;
+  // border: 1px solid $primary-color;
+  // border-radius: 20px;
 
   // align-items: center;
   animation-name: fadeInAnimation;

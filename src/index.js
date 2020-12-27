@@ -15,7 +15,10 @@ const middlewares = [thunk];
 
 const store = createStore(
   rootReducer,
-  compose(composeWithDevTools(applyMiddleware(...middlewares)))
+
+  // do this with a dev middleware
+  // compose(composeWithDevTools(applyMiddleware(...middlewares)))
+  applyMiddleware(...middlewares)
 );
 const history = createBrowserHistory();
 

@@ -1,18 +1,32 @@
-import React, { useState } from "react";
-
-// // you should have a second page.
+import React, { useEffect, useState } from "react";
 
 const InputTextField = (props) => {
-  const { placeholder, errMsg, fieldId, disableErrorInputField } = props;
+  const {
+    handleSignupFormInput,
+    placeholder,
+    errMsg,
+    fieldId,
+    disableErrorInputField,
+  } = props;
   const onBlur = (e) => {};
   const onFocus = (e) => {
     if (errMsg) {
       disableErrorInputField(fieldId);
     }
   };
+
+  const handleChange = (e) => {
+    const val = e.target.value;
+    handleSignupFormInput(fieldId, val);
+  };
   return (
     <div className="signup-form-input">
-      <input onFocus={onFocus} onBlur={onBlur} placeholder={placeholder} />
+      <input
+        onChange={handleChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        placeholder={placeholder}
+      />
       <p className="input-error-msg">{errMsg}</p>
     </div>
   );
@@ -60,12 +74,21 @@ const InputCheckbox = (props) => {
 };
 
 const InputCheckboxFields = (props) => {
-  const { title, options, fieldId, disableErrorInputField, errMsg } = props;
+  const {
+    handleSignupFormInput,
+    title,
+    options,
+    fieldId,
+    disableErrorInputField,
+    errMsg,
+  } = props;
   const [activeOption, setActiveOption] = useState(null);
 
-  const handleCheck = (e) => {
+  const handleCheck = async (e) => {
+    // we've attached 'index' attr to this event.
     const optionChecked = e.target.getAttribute("index");
-    setActiveOption(parseInt(optionChecked));
+    await setActiveOption(parseInt(optionChecked));
+    handleSignupFormInput(fieldId, options[optionChecked]);
     if (errMsg) {
       disableErrorInputField(fieldId);
     }
@@ -93,65 +116,109 @@ const InputCheckboxFields = (props) => {
 };
 // disable error when uploading images again
 const MultiImageUpload = (props) => {
-  const { validationErrors, submitSignupForm, disableErrorInputField } = props;
+  const {
+    validationErrors,
+    submitSignupForm,
+    disableErrorInputField,
+    errMsg,
+    handleSignupFormInput,
+  } = props;
+
+  useEffect(() => {
+    const multiDropElem = document.getElementById("multi-image-upload");
+    console.log("width:");
+    console.log(multiDropElem.width);
+    multiDropElem.style.height = multiDropElem.width;
+  });
   return (
     <div>
-      <div className="multi-image-upload">Drag and drop files here</div>
-      <p className="input-error-msg">You must provide</p>
+      <div id="multi-image-upload" className="multi-image-upload">
+        Drag and drop files here
+        {/* <input
+          className="box__file"
+          type="file"
+          name="files[]"
+          id="file"
+          data-multiple-caption="{count} files selected"
+          multiple
+        /> */}
+      </div>
+
+      {/* <div className="box__uploading">Uploading…</div>
+        <div className="box__success">Done!</div>
+        <div className="box__error">
+          Error! <span></span>.
+        </div> */}
+      <p className="input-error-msg">{errMsg}</p>
     </div>
   );
 };
 
 const HostSignupFormP1 = (props) => {
-  const { validationErrors, submitSignupForm, disableErrorInputField } = props;
+  const {
+    validationErrors,
+    handleSignupFormInput,
+    submitSignupForm,
+    disableErrorInputField,
+  } = props;
   return (
     <div className="host-signup-form-p1">
       <h3>Apply to be a host</h3>
       <InputTextField
+        handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.NAME_ERROR}
         fieldId="name"
         placeholder="name..."
       />
       <InputTextField
+        handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.EMAIL_ERROR}
         fieldId="email"
         placeholder="email..."
       />
       <InputTextField
+        handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.MOBILE_ERROR}
         fieldId="mobile"
         placeholder="mobile..."
       />
       <InputTextField
+        handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.LOCATION_ERROR}
         fieldId="location"
         placeholder="where is your space? (e.g. New York, NY)"
       />
       <InputCheckboxFields
+        handleSignupFormInput={handleSignupFormInput}
         options={["Yes", "Usually", "Sometimes", "No"]}
         title="Do you work from home?"
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.SCHEDULE_ERROR}
         fieldId="schedule"
       />
-      <InputCheckboxFields
+      {/* <InputCheckboxFields
+        handleSignupFormInput={handleSignupFormInput}
         options={["Yes", "No"]}
         title="Can you provide WiFi, outlets, coffee  and tea?"
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.AMENITIES_ERROR}
         fieldId="amenities"
-      />
+      /> */}
     </div>
   );
 };
 
 // https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
 const HostSignupFormP2 = (props) => {
-  const { validationErrors, disableErrorInputField } = props;
+  const {
+    handleSignupFormInput,
+    validationErrors,
+    disableErrorInputField,
+  } = props;
   return (
     <div className="host-signup-form-p2">
       <InputTextArea
@@ -172,6 +239,99 @@ const HostSignupFormP2 = (props) => {
 };
 
 const HostSignupForm = (props) => {
+  const { handleSignupFormInput } = props;
+
+  const [images, setImages] = useState([]);
+  const initListeners = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  // upload to state here
+  const onLoadCallback = async (e) => {
+    handleSignupFormInput("images", e.target.result);
+  };
+
+  const onLoadStart = async (e) => {
+    console.log("STARTING THE UPLOAD");
+  };
+  const onLoadEnd = async (e) => {
+    console.log("FINISHED THE UPLOAD");
+  };
+
+  const onProgress = async (e) => {
+    console.log("LOADED ", e.loaded);
+    console.log("total: ", e.total);
+    console.dir(e);
+  };
+
+  const onError = async (e) => {
+    console.log("there was an error");
+    // see if you can check what the alert was.
+    // you should make a popup or something that there
+    // was an error loading files
+    // handleSignupFormInput("images", e.target.result);
+  };
+
+  const handleMultiImageDrop = (e) => {
+    e.preventDefault(); // can prob get rid of this?
+    const filesToUpload = e.dataTransfer.files;
+    for (let i = 0; i < filesToUpload.length; i++) {
+      const reader = new FileReader();
+
+      // load drag and drop images to here
+      reader.onload = onLoadCallback;
+      reader.onloadend = onLoadEnd;
+      reader.onloadstart = onLoadStart;
+      reader.onprogress = onProgress;
+      const file = filesToUpload[i];
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    const multiImageUpload = document.getElementById("multi-image-upload");
+    [
+      "drag",
+      "dragstart",
+      "dragend",
+      "dragover",
+      "dragenter",
+      "dragleave",
+      "drop",
+    ].forEach((evt) => {
+      multiImageUpload.addEventListener(evt, initListeners, false);
+    });
+    multiImageUpload.addEventListener("drop", handleMultiImageDrop);
+    multiImageUpload.addEventListener("dragover", (e) => {
+      console.log("I AM DRAGOVER 1 ");
+      multiImageUpload.classList.add("is-dragover");
+    });
+    multiImageUpload.addEventListener("dragenter", (e) => {
+      console.log("I AM DRAGENGER ");
+      multiImageUpload.classList.add("is-dragover");
+    });
+
+    multiImageUpload.addEventListener("dragleave", (e) => {
+      console.log("I AM DRAGLEAVE ");
+      if (multiImageUpload.classList.contains("is-dragover")) {
+        multiImageUpload.classList.remove("is-dragover");
+      }
+    });
+    multiImageUpload.addEventListener("dragend", (e) => {
+      console.log("I AM DRAGEND ");
+      if (multiImageUpload.classList.contains("is-dragover")) {
+        multiImageUpload.classList.remove("is-dragover");
+      }
+    });
+    multiImageUpload.addEventListener("drop", (e) => {
+      console.log("I AM DROP ");
+      if (multiImageUpload.classList.contains("is-dragover")) {
+        multiImageUpload.classList.remove("is-dragover");
+      }
+    });
+  }, []);
+
   const { validationErrors, submitSignupForm, disableErrorInputField } = props;
   return (
     <div className="host-sign-up-form">

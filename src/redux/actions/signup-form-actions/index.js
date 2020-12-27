@@ -1,3 +1,10 @@
+export const handleSignupFormInputAction = (field, value) => {
+  return {
+    type: "HANDLE_SIGNUP_FORM_INPUT",
+    payload: { field, value },
+  };
+};
+
 export const submitSignupFormAction = (form) => {
   return (dispatch, getState) => {
     const formErrors = {};

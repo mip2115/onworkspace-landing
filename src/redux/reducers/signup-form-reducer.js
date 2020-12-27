@@ -11,6 +11,42 @@ const signupFormSubmitSuccessReducer = (state = false, action) => {
   }
 };
 
+const initialFormValuesState = {
+  name: null,
+  email: null,
+  mobile: null,
+  blurb: null,
+  images: [],
+  schedule: null,
+  amenities: null,
+  location: null,
+};
+
+export const handleSignupFormInputReducer = (
+  state = initialFormValuesState,
+  action
+) => {
+  switch (action.type) {
+    case "HANDLE_SIGNUP_FORM_INPUT":
+      const { field, value } = action.payload;
+      if (field == "images") {
+        console.log("got an image");
+
+        const newImages = [...state.images, value];
+        return {
+          ...state,
+          [field]: newImages,
+        };
+      }
+      return {
+        ...state,
+        [field]: value,
+      };
+    default:
+      return state;
+  }
+};
+
 const validationErrorsInitialState = {
   NAME_ERROR: null,
   EMAIL_ERROR: null,
@@ -72,4 +108,5 @@ export default combineReducers({
   formValidationErrors: formValidationErrorsReducer,
   signupFormSubmitSuccess: signupFormSubmitSuccessReducer,
   isLoading: setIsLoadingReducer,
+  signupFormInput: handleSignupFormInputReducer,
 });

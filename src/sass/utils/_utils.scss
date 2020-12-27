@@ -14,3 +14,14 @@
   transform: none;
   visibility: visible;
 }
+
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
+
+.multi-image-upload.is-dragover {
+  border: solid black 4px;
+}
