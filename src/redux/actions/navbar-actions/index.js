@@ -6,3 +6,10 @@ export const setSignupFormAction = (bool) => {
     });
   };
 };
+
+export const setDisplayMobileMenuAction = (bool) => {
+  return {
+    type: "SET_DISPLAY_MOBILE_MENU",
+    payload: bool,
+  };
+};
