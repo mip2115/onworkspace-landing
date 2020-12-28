@@ -5,13 +5,19 @@ import { compose } from "redux";
 import {
   setSignupFormAction,
   setHostSignupFormAction,
+  setDisplayMobileMenuAction,
 } from "../../redux/actions/navbar-actions";
-
+import NavbarMobile from "./navbar-mobile";
 import { disableAllInputFieldsErrorsAction } from "../../redux/actions/signup-form-actions";
 const Navbar = (props) => {
+  const { displayMobileMenu, setDisplayMobileMenu } = props;
   let listener = null;
   const [scrollState, setScrollState] = useState("top");
 
+  const handleDisplayMobileMenu = (e) => {
+    const { setDisplayMobileMenu, displayMobileMenu } = props;
+    setDisplayMobileMenu(!displayMobileMenu);
+  };
   const handleClick = async (e) => {
     const {
       history,
@@ -19,7 +25,12 @@ const Navbar = (props) => {
       setHostSignupForm,
       disableAllInputFieldsErrors,
       setIsLoading,
+      displayMobileMenu,
+      setDisplayMobileMenu,
     } = props;
+    if (displayMobileMenu) {
+      setDisplayMobileMenu(false);
+    }
 
     if (e.target.id == "signUp") {
       disableAllInputFieldsErrors();
@@ -80,34 +91,77 @@ const Navbar = (props) => {
           <p id="about" name="about">
             About
           </p>
+    <div className={`navbar-ctr ${scrollState}`}>
+      <div className={`navbar`}>
+        <div className="navbar-loading"></div>
+        <div className="navbar-tabs">
+          <div onClick={handleDisplayMobileMenu} className="navbar-tab-mobile">
+            &#x2630;
+          </div>
+
+          <div onClick={handleClick} className="navbar-tab apply-host-btn">
+            <p id="applyToBeHost" name="applyToBeHost">
+              Apply to be a host
+            </p>
+          </div>
+          <div onClick={handleClick} className="navbar-tab">
+            <p id="about" name="about">
+              About
+            </p>
+          </div>
+          <div className="navbar-tab">
+            <p>
+              <a
+                style={{ textDecoration: "none", color: "inherit" }}
+                href="mailto:mip2115@columbia"
+              >
+                Contact
+              </a>
+            </p>
+          </div>
+          <div
+            id="signUp"
+            name="signUp"
+            onClick={handleClick}
+            className="navbar-tab"
+          >
+            <p id="signUp" name="signUp">
+              Sign Up
+            </p>
+          </div>
         </div>
-        <div className="navbar-tab">
-          <p>
+      </div>
+
+      {displayMobileMenu && (
+        <div className="navbar-mobile">
+          <div
+            onClick={() => setDisplayMobileMenu(false)}
+            className="navbar-mobile-tab"
+          >
             <a
               style={{ textDecoration: "none", color: "inherit" }}
               href="mailto:mip2115@columbia"
             >
               Contact
             </a>
-          </p>
+          </div>
+          <div
+            onClick={handleClick}
+            id="about"
+            name="about"
+            className="navbar-mobile-tab"
+          >
+            About
+          </div>
         </div>
-        <div
-          id="signUp"
-          name="signUp"
-          onClick={handleClick}
-          className="navbar-tab"
-        >
-          <p id="signUp" name="signUp">
-            Sign Up
-          </p>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
 const mapStateToProps = (state) => {
   return {
     displayUserSignup: state.nav.displayUserSignup,
+    displayMobileMenu: state.nav.displayMobileMenu,
   };
 };
 const dispatchStateToProps = (dispatch) => {
@@ -115,6 +169,7 @@ const dispatchStateToProps = (dispatch) => {
     setSignupForm: (bool) => dispatch(setSignupFormAction(bool)),
     disableAllInputFieldsErrors: () =>
       dispatch(disableAllInputFieldsErrorsAction()),
+    setDisplayMobileMenu: (bool) => dispatch(setDisplayMobileMenuAction(bool)),
   };
 };
 export default compose(

@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "./sass/main.scss";
+// import "./sass/main.scss";
 import Navbar from "./components/navbar";
 import Home from "./components/home";
 import { MainContainer } from "./components/utils";

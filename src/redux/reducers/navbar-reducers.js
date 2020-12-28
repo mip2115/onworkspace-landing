@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
   displayUserSignup: true,
-  isLoading: false,
+  displayMobileMenu: false,
 };
 
 const setSignupReducer = (state = true, action) => {
@@ -14,6 +14,17 @@ const setSignupReducer = (state = true, action) => {
   }
 };
 
+const setDisplayMobileMenuReducer = (state = false, action) => {
+  console.log(action.type);
+  switch (action.type) {
+    case "SET_DISPLAY_MOBILE_MENU":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   displayUserSignup: setSignupReducer,
+  displayMobileMenu: setDisplayMobileMenuReducer,
 });
