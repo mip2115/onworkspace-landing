@@ -65,6 +65,17 @@ const Navbar = (props) => {
   };
 
   useEffect(() => {
+    var navbarTabs = document.getElementById("navbar-tabs");
+    //I'm using "click" but it works with any event
+    document.addEventListener("click", function (event) {
+      var isClickInside = navbarTabs.contains(event.target);
+
+      if (!isClickInside) {
+        //the click was outside the specifiedElement, do something
+        setDisplayMobileMenu(false);
+      }
+    });
+
     listener = document.addEventListener("scroll", (e) => {
       var scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 120) {
@@ -78,23 +89,10 @@ const Navbar = (props) => {
     };
   }, [scrollState]);
   return (
-    <div className={`navbar ${scrollState}`}>
-      <div className="navbar-logo">onCoffeespace()</div>
-      <div className="navbar-tabs">
-        <div className="navbar-tab-mobile">&#x2630;</div>
-        <div onClick={handleClick} className="navbar-tab apply-host-btn">
-          <p id="applyToBeHost" name="applyToBeHost">
-            Apply to be a host
-          </p>
-        </div>
-        <div onClick={handleClick} className="navbar-tab">
-          <p id="about" name="about">
-            About
-          </p>
     <div className={`navbar-ctr ${scrollState}`}>
       <div className={`navbar`}>
-        <div className="navbar-loading"></div>
-        <div className="navbar-tabs">
+        <div className="navbar-logo">onCoffeespace()</div>
+        <div id="navbar-tabs" className="navbar-tabs">
           <div onClick={handleDisplayMobileMenu} className="navbar-tab-mobile">
             &#x2630;
           </div>
