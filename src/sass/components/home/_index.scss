@@ -9,6 +9,7 @@
     animation-name: background-animation;
     animation-duration: 12s;
     animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -71,16 +72,15 @@
 @keyframes background-animation {
   0%,
   100% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-1.jpg");
+    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-6.jpg");
   }
 
   28% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-1.jpg");
+    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-6.jpg");
   }
   33% {
     background-image: url("https://coworking-public.s3.amazonaws.com/images/background-2.jpg");
   }
-
   61% {
     background-image: url("https://coworking-public.s3.amazonaws.com/images/background-2.jpg");
   }

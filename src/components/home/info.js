@@ -8,7 +8,22 @@ const img2Src =
   "https://bloximages.chicago2.vip.townnews.com/magicvalley.com/content/tncms/assets/v3/editorial/6/88/688a1fdb-0318-521e-82c4-41ed519e89a6/56d661c4024f1.image.jpg?resize=1200%2C800";
 const img3Src =
   "https://www.coworker.com/mag/wp-content/uploads/2019/03/coworking-space-1280x640.jpg";
-
+const img4Src =
+  "https://inhabitat.com/wp-content/blogs.dir/1/files/2016/01/hoffice-meeting01.jpg";
+const img5Src =
+  "https://cms.qz.com/wp-content/uploads/2018/09/Working-At-Home.jpg?quality=75&strip=all&w=1600&h=900&crop=1";
+const img6Src =
+  "https://drop-desk.com/blog/wp-content/uploads/2019/02/advantages-of-coworking-spaces.jpg";
+const description1 =
+  "We connect you with local workspaces in beautiful homes. Each home is curated to provide the optimal work enviroment.";
+const description2 =
+  "Workspaces are conveniently placed around the city so one will always be nearby no matter where you are.";
+const description3 =
+  "Each workspace offers fast WiFi, comfortable furniture, a kitchen and unlimited coffee and tea. Feel free to take your shoes off, too.";
+const description4 =
+  "Hosts are vetted to ensure the saftey and security of our guests.  Protecting our guests is the highest priority.";
+const description5 =
+  "Meet other remote workers around the city.  Build your network and create strong connections.";
 const InfoCard = (props) => {
   const { title, text, imgSrc, reverse } = props;
   if (reverse) {
@@ -54,18 +69,14 @@ const Info = () => {
   return (
     <div id="info" className="info">
       {/* <Fade> */}
-      <InfoCard
-        imgSrc={img1Src}
-        title="How it works"
-        text="We connect your employees with local, productive workspaces hosted in beautiful, quiet residences. Tell us where your employees need workspaces, and we'll take care of the rest."
-      />
+      <InfoCard imgSrc={img4Src} title="How it works" text={description1} />
       {/* </Fade>
       <Fade> */}
       <InfoCard
         reverse
-        imgSrc={img2Src}
+        imgSrc={img5Src}
         title="Convenient and easy"
-        text="Each Codi workspace offers office-level amenities, such as secure high-speed WiFi, fresh coffee, area for private calls, and more."
+        text={description2}
       />
 
       {/* </Fade>
@@ -73,7 +84,7 @@ const Info = () => {
       <InfoCard
         imgSrc={img2Src}
         title="Everything you need for work"
-        text="Each Codi workspace offers office-level amenities, such as secure high-speed WiFi, fresh coffee, area for private calls, and more."
+        text={description3}
       />
       {/* </Fade>
       <Fade> */}
@@ -81,14 +92,10 @@ const Info = () => {
         reverse
         imgSrc={img3Src}
         title="Safe and secure"
-        text="Every space and user is vetted to ensure strict quality standards, including cleaning protocols and distancing measures to protect our community."
+        text={description4}
       />
       {/* </Fade> */}
-      <InfoCard
-        imgSrc={img3Src}
-        title="Build community"
-        text="Every space and user is vetted to ensure strict quality standards, including cleaning protocols and distancing measures to protect our community."
-      />
+      <InfoCard imgSrc={img6Src} title="Build community" text={description5} />
       {/* </Fade> */}
     </div>
   );
