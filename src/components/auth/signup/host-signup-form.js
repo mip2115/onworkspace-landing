@@ -208,28 +208,28 @@ const HostSignupFormP1 = (props) => {
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.NAME_ERROR}
         fieldId="name"
-        placeholder="name..."
+        placeholder="name"
       />
       <InputTextField
         handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.EMAIL_ERROR}
         fieldId="email"
-        placeholder="email..."
+        placeholder="email"
       />
       <InputTextField
         handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.MOBILE_ERROR}
         fieldId="mobile"
-        placeholder="mobile..."
+        placeholder="mobile"
       />
       <InputTextField
         handleSignupFormInput={handleSignupFormInput}
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.LOCATION_ERROR}
         fieldId="location"
-        placeholder="where is your space? (e.g. New York, NY)"
+        placeholder="where is your workspace? (e.g. New York, NY)"
       />
       <InputCheckboxFields
         handleSignupFormInput={handleSignupFormInput}
@@ -267,7 +267,7 @@ const HostSignupFormP2 = (props) => {
         disableErrorInputField={disableErrorInputField}
         fieldId="blurb"
         errMsg={validationErrors.BLURB_ERROR}
-        placeholder="Write a small blurb about your work space..."
+        placeholder="write a small blurb about your workspace"
       />
       <MultiImageUpload
         removeSmallImageCard={removeSmallImageCard}

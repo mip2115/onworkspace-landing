@@ -5,14 +5,13 @@
   animation-duration: 1s;
 
   &-background {
-    height: calc(100vh - #{$navbar-height} - 150px);
+    height: calc(100vh - #{$navbar-height});
     animation-name: background-animation;
     animation-duration: 12s;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: linear;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
 
     @include for-tablet-portrait-up {
       background: none;
@@ -72,23 +71,29 @@
 @keyframes background-animation {
   0%,
   100% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-6.jpg");
+    background-position: center;
+    background-image: url("./assets/shutterstock/image-3-med.jpg");
   }
 
   28% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-6.jpg");
+    background-position: center;
+    background-image: url("./assets/shutterstock/image-3-med.jpg");
   }
   33% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-2.jpg");
+    background-position: top;
+    background-image: url("./assets/shutterstock/image-2-med.jpg");
   }
   61% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-2.jpg");
+    background-position: top;
+    background-image: url("./assets/shutterstock/image-2-med.jpg");
   }
   66% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-3.jpg");
+    background-position: bottom;
+    background-image: url("./assets/shutterstock/image-1-med.jpg");
   }
 
   96% {
-    background-image: url("https://coworking-public.s3.amazonaws.com/images/background-3.jpg");
+    background-position: bottom;
+    background-image: url("./assets/shutterstock/image-1-med.jpg ");
   }
 }

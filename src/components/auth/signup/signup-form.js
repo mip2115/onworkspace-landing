@@ -45,21 +45,21 @@ const SignupForm = (props) => {
       <InputTextField
         fieldId="name"
         errMsg={validationErrors.NAME_ERROR}
-        placeholder="name..."
+        placeholder="name"
         disableErrorInputField={disableErrorInputField}
         handleSignupFormInput={handleSignupFormInput}
       />
       <InputTextField
         fieldId="mobile"
         errMsg={validationErrors.MOBILE_ERROR}
-        placeholder="mobile..."
+        placeholder="mobile"
         disableErrorInputField={disableErrorInputField}
         handleSignupFormInput={handleSignupFormInput}
       />
       <InputTextField
         fieldId="email"
         errMsg={validationErrors.EMAIL_ERROR}
-        placeholder="email..."
+        placeholder="email"
         disableErrorInputField={disableErrorInputField}
         handleSignupFormInput={handleSignupFormInput}
       />

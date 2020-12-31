@@ -91,7 +91,11 @@ const Navbar = (props) => {
   return (
     <div className={`navbar-ctr ${scrollState}`}>
       <div className={`navbar`}>
-        <div className="navbar-logo">onCoffeespace()</div>
+        <div className="navbar-logo">
+          <p>
+            work<span>space</span>
+          </p>
+        </div>
         <div id="navbar-tabs" className="navbar-tabs">
           <div onClick={handleDisplayMobileMenu} className="navbar-tab-mobile">
             &#x2630;

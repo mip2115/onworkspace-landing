@@ -1,6 +1,12 @@
 import React from "react";
 import { Fade } from "react-reveal";
 import { FadeInSection } from "../utils";
+import imageConvenient from "../../assets/shutterstock/info-card-1.png";
+import communityImage from "../../assets/shutterstock/info-card-comunity.png";
+import howItWorks from "../../assets/shutterstock/how-it-works.png";
+import everythingYouNeed from "../../assets/shutterstock/everything-you-need-2.png";
+const safeSecure =
+  "https://media.istockphoto.com/vectors/security-camera-icon-design-illustrationsilhouette-design-style-vector-id937962902?b=1&k=6&m=937962902&s=612x612&w=0&h=grywlLtApNTJKoCVD95pBPu39mKXwPHt24cuboG8_Hg=";
 const img1Src =
   "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-photo%2Fwoman-working-with-the-laptop-in-the-living-room-of-her-house_23-2147601396.jpg&f=1&nofb=1";
 
@@ -69,12 +75,12 @@ const Info = () => {
   return (
     <div id="info" className="info">
       {/* <Fade> */}
-      <InfoCard imgSrc={img4Src} title="How it works" text={description1} />
+      <InfoCard imgSrc={howItWorks} title="How it works" text={description1} />
       {/* </Fade>
       <Fade> */}
       <InfoCard
         reverse
-        imgSrc={img5Src}
+        imgSrc={imageConvenient}
         title="Convenient and easy"
         text={description2}
       />
@@ -82,7 +88,7 @@ const Info = () => {
       {/* </Fade>
       <Fade> */}
       <InfoCard
-        imgSrc={img2Src}
+        imgSrc={everythingYouNeed}
         title="Everything you need for work"
         text={description3}
       />
@@ -90,12 +96,16 @@ const Info = () => {
       <Fade> */}
       <InfoCard
         reverse
-        imgSrc={img3Src}
+        imgSrc={safeSecure}
         title="Safe and secure"
         text={description4}
       />
       {/* </Fade> */}
-      <InfoCard imgSrc={img6Src} title="Build community" text={description5} />
+      <InfoCard
+        imgSrc={communityImage}
+        title="Build community"
+        text={description5}
+      />
       {/* </Fade> */}
     </div>
   );
