@@ -6,6 +6,7 @@
 
   &-background {
     height: calc(100vh - #{$navbar-height});
+    max-height: 650px;
     animation-name: background-animation;
     animation-duration: 12s;
     animation-iteration-count: infinite;

@@ -5,7 +5,7 @@
     border: 1px solid $primary-color;
     border-radius: 20px;
     color: $primary-color;
-    @include for-tablet-portrait-up{
+    @include for-tablet-landscape-up {
       width: 100%;
       padding: $primary-padding-mobile;
     }
@@ -18,7 +18,7 @@
   animation-duration: 1s;
   padding: 0 $primary-padding $primary-padding $primary-padding;
 
-  @include for-tablet-portrait-up {
+  @include for-tablet-landscape-up {
     padding: $primary-padding-mobile;
   }
 }

@@ -3,8 +3,10 @@ import { Fade } from "react-reveal";
 import { FadeInSection } from "../utils";
 import imageConvenient from "../../assets/shutterstock/info-card-1.png";
 import communityImage from "../../assets/shutterstock/info-card-comunity.png";
-import howItWorks from "../../assets/shutterstock/how-it-works.png";
+import howItWorks from "../../assets/shutterstock/living-room.png";
 import everythingYouNeed from "../../assets/shutterstock/everything-you-need-2.png";
+import secureSafe from "../../assets/shutterstock/security-camera.png";
+import manWalking from "../../assets/shutterstock/man-walking.png";
 const safeSecure =
   "https://media.istockphoto.com/vectors/security-camera-icon-design-illustrationsilhouette-design-style-vector-id937962902?b=1&k=6&m=937962902&s=612x612&w=0&h=grywlLtApNTJKoCVD95pBPu39mKXwPHt24cuboG8_Hg=";
 const img1Src =
@@ -23,15 +25,15 @@ const img6Src =
 const description1 =
   "We connect you with local workspaces in beautiful homes. Each home is curated to provide the optimal work enviroment.";
 const description2 =
-  "Workspaces are conveniently placed around the city so one will always be nearby no matter where you are.";
+  "Workspaces are conveniently placed around the city.  A workspace will always be nearby no matter where you are.";
 const description3 =
-  "Each workspace offers fast WiFi, comfortable furniture, a kitchen and unlimited coffee and tea. Feel free to take your shoes off, too.";
+  "Each workspace offers fast WiFi, comfortable furniture, a kitchen and unlimited coffee and tea. Feel free to take your shoes off too.";
 const description4 =
-  "Hosts are vetted to ensure the saftey and security of our guests.  Protecting our guests is the highest priority.";
+  "Hosts are vetted to ensure the saftey and security of our guests.  Making our guests feel safe is the highest priority.";
 const description5 =
-  "Meet other remote workers around the city.  Build your network and create strong connections.";
+  "Meet other remote workers.  Build your network, create strong connections and join our community.";
 const InfoCard = (props) => {
-  const { title, text, imgSrc, reverse } = props;
+  const { title, text, imgSrc, reverse, style } = props;
   if (reverse) {
     return (
       <FadeInSection>
@@ -70,6 +72,8 @@ const InfoCard = (props) => {
 };
 
 const Info = () => {
+  // 1200
+  // var width = window.innerWidth > 0 ? window.innerWidth : window.outerWidth;
   // https://www.selbekk.io/blog/2019/08/how-to-fade-in-content-as-it-scrolls-into-view/
 
   return (
@@ -80,8 +84,8 @@ const Info = () => {
       <Fade> */}
       <InfoCard
         reverse
-        imgSrc={imageConvenient}
-        title="Convenient and easy"
+        imgSrc={manWalking}
+        title="Simple and easy"
         text={description2}
       />
 
@@ -96,7 +100,7 @@ const Info = () => {
       <Fade> */}
       <InfoCard
         reverse
-        imgSrc={safeSecure}
+        imgSrc={secureSafe}
         title="Safe and secure"
         text={description4}
       />
