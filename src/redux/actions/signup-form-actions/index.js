@@ -104,7 +104,8 @@ export const submitSignupFormAction = () => {
           payload: false,
         });
         const result = await axios.post(
-          "http://onworkspace-alb-701800075.us-east-1.elb.amazonaws.com/api/auth/sign-up",
+          // "https://onworkspace-alb-701800075.us-east-1.elb.amazonaws.com/api/auth/sign-up",
+          "https://server.onworkspace.com/api/auth/sign-up",
           data
         );
         // call success
