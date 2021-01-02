@@ -3,6 +3,7 @@ import SignupForm from "./signup-form";
 import HostSignupForm from "./host-signup-form";
 import { connect } from "react-redux";
 import FormRecvd from "./form-recvd";
+import SignupErrorModal from "../../modals/sign-up-modal";
 import {
   submitSignupFormAction,
   disableErrorInputFieldAction,
@@ -25,6 +26,7 @@ const Signup = (props) => {
     setIsLoading, // can remove this
     isLoading,
     formSuccess,
+    formSubmitError,
   } = props;
   if (formSuccess) {
     return (
@@ -72,6 +74,9 @@ const Signup = (props) => {
           </div>
         )}
       </div>
+      {formSubmitError && (
+        <SignupErrorModal formSubmitError={formSubmitError} />
+      )}
     </div>
   );
 };
@@ -83,14 +88,14 @@ const mapStateToProps = (state) => {
     signupFormInput: state.signupForm.signupFormInput,
     isLoading: state.utils.isLoading,
     formSuccess: state.signupForm.signupFormSubmitSuccess,
+    formSubmitError: state.signupForm.formSubmitError,
   };
 };
 const dispatchStateToProps = (dispatch) => {
   return {
     disableErrorInputField: (errorFieldToDisable) =>
       dispatch(disableErrorInputFieldAction(errorFieldToDisable)),
-    submitSignupForm: (formValues) =>
-      dispatch(submitSignupFormAction(formValues)),
+    submitSignupForm: () => dispatch(submitSignupFormAction()),
     handleSignupFormInput: (field, value) =>
       dispatch(handleSignupFormInputAction(field, value)),
     removeSmallImageCard: (idx) => dispatch(removeSmallImageCardAction(idx)),

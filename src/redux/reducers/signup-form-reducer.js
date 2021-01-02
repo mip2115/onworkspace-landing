@@ -11,6 +11,17 @@ const signupFormSubmitSuccessReducer = (state = false, action) => {
   }
 };
 
+const formSubmitErrorReducer = (state = null, action) => {
+  switch (action.type) {
+    case "FORM_SUBMIT_ERROR":
+      return action.payload;
+    case "CLEAR_FORM_SUBMIT_ERROR":
+      return null;
+    default:
+      return state;
+  }
+};
+
 const initialFormValuesState = {
   name: null,
   email: null,
@@ -114,4 +125,5 @@ export default combineReducers({
   signupFormSubmitSuccess: signupFormSubmitSuccessReducer,
   //   isLoading: setIsLoadingReducer,
   signupFormInput: handleSignupFormInputReducer,
+  formSubmitError: formSubmitErrorReducer,
 });

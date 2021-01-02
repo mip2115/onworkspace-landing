@@ -1,0 +1,26 @@
+.signup-error-modal {
+  height: 150px;
+  width: 500px;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  background-color: rgb(253, 245, 245);
+  margin-top: calc(#{$navbar-height} + 60px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: 1px 1px 10px rgb(199, 199, 199);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(170, 0, 0);
+  animation-name: fadeInAnimation;
+  animation-duration: 0.5s;
+
+  @include for-tablet-landscape-up {
+    width: 100%;
+    left: 0;
+    transform: none;
+    margin-top: $navbar-height-mobile;
+  }
+}

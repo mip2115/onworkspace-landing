@@ -1,7 +1,6 @@
 import axios from "axios";
+
 export const handleSignupFormInputAction = (field, value) => {
-  console.log("SETTING VALS");
-  console.log(field, value);
   return {
     type: "HANDLE_SIGNUP_FORM_INPUT",
     payload: { field, value },
@@ -19,47 +18,55 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const submitSignupFormAction = (form) => {
+export const submitSignupFormAction = () => {
   return async (dispatch, getState) => {
+    const form = getState().signupForm.signupFormInput;
     const formErrors = {};
-
     // need to check if we are in host/regular sign up mode
-    // if (!form.name) {
-    //   formErrors.NAME_ERROR = "You must provide a name";
-    // }
+    if (!form.name) {
+      formErrors.NAME_ERROR = "You must provide a name";
+    }
 
-    // // check if its a valid email too
-    // if (!form.email) {
-    //   formErrors.EMAIL_ERROR = "You must provide an email address";
-    // }
+    // check if its a valid email too
+    if (!form.email) {
+      formErrors.EMAIL_ERROR = "You must provide an email address";
+    }
 
-    // // check if its a valid phone number too
-    // if (!form.mobile) {
-    //   formErrors.MOBILE_ERROR = "You must provide a phone number";
-    // }
+    // check if its a valid phone number too
+    if (!form.mobile) {
+      formErrors.MOBILE_ERROR = "You must provide a phone number";
+    }
 
     // if (!form.images && !getState().nav.displayUserSignup) {
     //   formErrors.IMAGES_ERROR =
     //     "You must provide at least 3 images of your work space";
     // }
 
-    // if (!form.blurb && !getState().nav.displayUserSignup) {
-    //   formErrors.BLURB_ERROR = "You must provide a blurb";
-    // }
+    if (!form.blurb && !getState().nav.displayUserSignup) {
+      formErrors.BLURB_ERROR = "You must provide a blurb";
+    }
 
-    // if (!form.schedule && !getState().nav.displayUserSignup) {
-    //   formErrors.SCHEDULE_ERROR = "You must select an option";
-    // }
+    if (!form.schedule && !getState().nav.displayUserSignup) {
+      formErrors.SCHEDULE_ERROR = "You must select an option";
+    }
 
     // if (!form.amenities && !getState().nav.displayUserSignup) {
     //   formErrors.AMENITIES_ERROR = "You must select an option";
     // }
 
-    // // maybe do this as well for customer to know where they all are.
-    // if (!form.location && !getState().nav.displayUserSignup) {
-    //   formErrors.LOCATION_ERROR =
-    //     "You must select a location for your work space";
-    // }
+    // maybe do this as well for customer to know where they all are.
+    if (!form.location && !getState().nav.displayUserSignup) {
+      formErrors.LOCATION_ERROR =
+        "You must select a location for your work space";
+    }
+    if (form.location && !getState().nav.displayUserSignup) {
+      const [city, state] = form.location.split(",");
+      if (!city || !state) {
+        formErrors.LOCATION_ERROR = "Please format location as city, ST";
+      } else if (state && state.trim().length !== 2) {
+        formErrors.LOCATION_ERROR = "Please format location as city, ST";
+      }
+    }
 
     if (
       Object.keys(formErrors).length !== 0 &&
@@ -91,31 +98,56 @@ export const submitSignupFormAction = (form) => {
 
       try {
         console.log("Making request...");
-        // const result = await axios.post(
-        //   "http://localhost:5000/api/auth/sign-up",
-        //   data
-        // );
+        // making the call, set to loading
+        dispatch({
+          type: "SET_IS_LOADING",
+          payload: false,
+        });
+        const result = await axios.post(
+          "http://onworkspace-alb-701800075.us-east-1.elb.amazonaws.com/api/auth/sign-up",
+          data
+        );
+        // call success
+        dispatch({
+          type: "FORM_SUBMIT_SUCCESS",
+          payload: true,
+        });
       } catch (error) {
         console.log("ERROR IS");
-        console.log(error);
+        let errMsg = error.response.data.error;
+        console.log(errMsg);
+
+        if (errMsg.includes("user already exists")) {
+          errMsg = "A user already exists with this email address";
+        } else {
+          errMsg = "An error occured.  Please try again in a few minutes.";
+        }
+
+        dispatch({
+          type: "FORM_SUBMIT_ERROR",
+          payload: errMsg,
+        });
+        setTimeout(() => setSubmitFormErrorToNull(dispatch, errMsg), 3000);
       }
-      await sleep(2000);
-      console.log("SLEPT");
-      dispatch({
-        type: "SET_IS_LOADING",
-        payload: false,
-      });
+      // await sleep(2000);
+      // dispatch({
+      //   type: "SET_IS_LOADING",
+      //   payload: false,
+      // });
       // check if the call is ok
       // down here you should make the async call
       // this where you'd set isLoading = true
       // once you get the success return that it succeeded
     }
     // call succeeded
-    dispatch({
-      type: "FORM_SUBMIT_SUCCESS",
-      payload: true,
-    });
   };
+};
+
+const setSubmitFormErrorToNull = (dispatch, errMsg) => {
+  dispatch({
+    type: "CLEAR_FORM_SUBMIT_ERROR",
+    payload: errMsg,
+  });
 };
 
 /**

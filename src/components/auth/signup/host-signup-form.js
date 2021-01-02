@@ -33,8 +33,19 @@ const InputTextField = (props) => {
 };
 
 const InputTextArea = (props) => {
-  const { placeholder, errMsg, fieldId, disableErrorInputField } = props;
+  const {
+    placeholder,
+    errMsg,
+    fieldId,
+    disableErrorInputField,
+    handleSignupFormInput,
+  } = props;
   const onBlur = (e) => {};
+  const handleChange = (e) => {
+    const val = e.target.value;
+    handleSignupFormInput(fieldId, val);
+  };
+
   const onFocus = (e) => {
     const fieldToDisable = e.target.id;
     if (errMsg) {
@@ -44,6 +55,7 @@ const InputTextArea = (props) => {
   return (
     <div className="textarea-input">
       <textarea
+        onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
         placeholder={placeholder}
@@ -231,14 +243,14 @@ const HostSignupFormP1 = (props) => {
         fieldId="location"
         placeholder="where is your workspace? (e.g. New York, NY)"
       />
-      <InputCheckboxFields
+      {/* <InputCheckboxFields
         handleSignupFormInput={handleSignupFormInput}
         options={["Yes", "Usually", "Sometimes", "No"]}
         title="Do you work from home?"
         disableErrorInputField={disableErrorInputField}
         errMsg={validationErrors.SCHEDULE_ERROR}
         fieldId="schedule"
-      />
+      /> */}
       {/* <InputCheckboxFields
         handleSignupFormInput={handleSignupFormInput}
         options={["Yes", "No"]}
@@ -263,20 +275,29 @@ const HostSignupFormP2 = (props) => {
   return (
     <div className="host-signup-form-p2">
       <InputTextArea
+        handleSignupFormInput={handleSignupFormInput}
         validationErrors={validationErrors}
         disableErrorInputField={disableErrorInputField}
         fieldId="blurb"
         errMsg={validationErrors.BLURB_ERROR}
         placeholder="write a small blurb about your workspace"
       />
-      <MultiImageUpload
+      <InputCheckboxFields
+        handleSignupFormInput={handleSignupFormInput}
+        options={["Yes", "Usually", "Sometimes", "No"]}
+        title="Do you work from home?"
+        disableErrorInputField={disableErrorInputField}
+        errMsg={validationErrors.SCHEDULE_ERROR}
+        fieldId="schedule"
+      />
+      {/* <MultiImageUpload
         removeSmallImageCard={removeSmallImageCard}
         signupFormInput={signupFormInput}
         validationErrors={validationErrors}
         disableErrorInputField={disableErrorInputField}
         fieldId="images"
         errMsg={validationErrors.IMAGES_ERROR}
-      />
+      /> */}
     </div>
   );
 };
@@ -332,48 +353,48 @@ const HostSignupForm = (props) => {
     }
   };
 
-  useEffect(() => {
-    const multiImageUpload = document.getElementById("multi-image-upload");
-    [
-      "drag",
-      "dragstart",
-      "dragend",
-      "dragover",
-      "dragenter",
-      "dragleave",
-      "drop",
-    ].forEach((evt) => {
-      multiImageUpload.addEventListener(evt, initListeners, false);
-    });
-    multiImageUpload.addEventListener("drop", handleMultiImageDrop);
-    multiImageUpload.addEventListener("dragover", (e) => {
-      console.log("I AM DRAGOVER 1 ");
-      multiImageUpload.classList.add("is-dragover");
-    });
-    multiImageUpload.addEventListener("dragenter", (e) => {
-      console.log("I AM DRAGENGER ");
-      multiImageUpload.classList.add("is-dragover");
-    });
+  // useEffect(() => {
+  //   const multiImageUpload = document.getElementById("multi-image-upload");
+  //   [
+  //     "drag",
+  //     "dragstart",
+  //     "dragend",
+  //     "dragover",
+  //     "dragenter",
+  //     "dragleave",
+  //     "drop",
+  //   ].forEach((evt) => {
+  //     multiImageUpload.addEventListener(evt, initListeners, false);
+  //   });
+  //   multiImageUpload.addEventListener("drop", handleMultiImageDrop);
+  //   multiImageUpload.addEventListener("dragover", (e) => {
+  //     console.log("I AM DRAGOVER 1 ");
+  //     multiImageUpload.classList.add("is-dragover");
+  //   });
+  //   multiImageUpload.addEventListener("dragenter", (e) => {
+  //     console.log("I AM DRAGENGER ");
+  //     multiImageUpload.classList.add("is-dragover");
+  //   });
 
-    multiImageUpload.addEventListener("dragleave", (e) => {
-      console.log("I AM DRAGLEAVE ");
-      if (multiImageUpload.classList.contains("is-dragover")) {
-        multiImageUpload.classList.remove("is-dragover");
-      }
-    });
-    multiImageUpload.addEventListener("dragend", (e) => {
-      console.log("I AM DRAGEND ");
-      if (multiImageUpload.classList.contains("is-dragover")) {
-        multiImageUpload.classList.remove("is-dragover");
-      }
-    });
-    multiImageUpload.addEventListener("drop", (e) => {
-      console.log("I AM DROP ");
-      if (multiImageUpload.classList.contains("is-dragover")) {
-        multiImageUpload.classList.remove("is-dragover");
-      }
-    });
-  }, []);
+  //   multiImageUpload.addEventListener("dragleave", (e) => {
+  //     console.log("I AM DRAGLEAVE ");
+  //     if (multiImageUpload.classList.contains("is-dragover")) {
+  //       multiImageUpload.classList.remove("is-dragover");
+  //     }
+  //   });
+  //   multiImageUpload.addEventListener("dragend", (e) => {
+  //     console.log("I AM DRAGEND ");
+  //     if (multiImageUpload.classList.contains("is-dragover")) {
+  //       multiImageUpload.classList.remove("is-dragover");
+  //     }
+  //   });
+  //   multiImageUpload.addEventListener("drop", (e) => {
+  //     console.log("I AM DROP ");
+  //     if (multiImageUpload.classList.contains("is-dragover")) {
+  //       multiImageUpload.classList.remove("is-dragover");
+  //     }
+  //   });
+  // }, []);
 
   const {
     validationErrors,

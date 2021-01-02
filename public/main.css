@@ -690,3 +690,27 @@ font-family: 'Raleway', sans-serif;
   96% {
     background-position: bottom;
     background-image: url("./assets/shutterstock/image-1-med.jpg "); } }
+
+.signup-error-modal {
+  height: 150px;
+  width: 500px;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  background-color: #fdf5f5;
+  margin-top: calc(100px + 60px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: 1px 1px 10px #c7c7c7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aa0000;
+  animation-name: fadeInAnimation;
+  animation-duration: 0.5s; }
+  @media (max-width: 1200px) {
+    .signup-error-modal {
+      width: 100%;
+      left: 0;
+      transform: none;
+      margin-top: 100px; } }
