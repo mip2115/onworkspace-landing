@@ -86,7 +86,7 @@ export const submitSignupFormAction = () => {
       });
 
       const role = !getState().nav.displayUserSignup ? "host" : "guest";
-      const tenancy = "testing"; // check env here
+      const tenancy = "production"; // check env here
       const data = {
         role,
         tenancy,

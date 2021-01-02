@@ -101,12 +101,22 @@ const Navbar = (props) => {
             &#x2630;
           </div>
 
-          <div onClick={handleClick} className="navbar-tab apply-host-btn">
+          <div
+            id="applyToBeHost"
+            name="applyToBeHost"
+            onClick={handleClick}
+            className="navbar-tab apply-host-btn"
+          >
             <p id="applyToBeHost" name="applyToBeHost">
               Apply to be a host
             </p>
           </div>
-          <div onClick={handleClick} className="navbar-tab">
+          <div
+            id="about"
+            name="about"
+            onClick={handleClick}
+            className="navbar-tab"
+          >
             <p id="about" name="about">
               About
             </p>
